@@ -5,8 +5,9 @@ head(gss_cat)
 #create a dataset of married and divorced with tv hours
 
 tv_hours_marital <- gss_cat %>% 
-  select(marital, tvhours) %>% 
-  filter(marital %in% c("Divorced", "Married"))
+  select(marital, tvhours,age) %>% 
+  filter(marital %in% c("Divorced", "Married")) %>% 
+  filter(age >= 30)
 
 #remove na
 tv_hours_marital1 <- tv_hours_marital %>%
@@ -20,7 +21,7 @@ total_tv_hours <- tv_hours_marital1 %>%
   summarise(total_tv_hours=sum(tvhours))
 
 #total count by marital
-count_marital <- gss_cat %>% 
+count_marital <- tv_hours_marital1 %>% 
   group_by(marital) %>% 
   count()
          
