@@ -7,7 +7,7 @@ head(gss_cat)
 tv_hours_marital <- gss_cat %>% 
   select(marital, tvhours,age) %>% 
   filter(marital %in% c("Divorced", "Married")) %>% 
-  filter(age >= 30)
+  filter(age < 30)
 
 #remove na
 tv_hours_marital1 <- tv_hours_marital %>%
